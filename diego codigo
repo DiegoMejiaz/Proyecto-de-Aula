@@ -133,6 +133,7 @@ public class prueba {
             System.out.println("2. Ver juegos: ");
             System.out.println("3. personas Inscritas");
             System.out.println("4. listar usuarios ");
+            System.out.println("5. modificar usuarios");
             System.out.print("Seleciona la opcion: ");
             opcion = entrada.nextInt();
             limpiarPantalla();
@@ -151,9 +152,13 @@ public class prueba {
                 
                 case 4:
                 listarUsuarios(usuarios,contadorDeMiArreglo);
-            }
 
-        } while (true);
+                case 5:
+                modificarUsuarios(usuarios, contadorDeMiArreglo,entrada);
+
+        } 
+    }
+    while (true);
     }
 
     // Método guardar
@@ -162,6 +167,9 @@ public class prueba {
         System.out.println("¿Desea inscribirse?");
         System.out.println("1.(SI) 2.(NO)");
         int codigoJuego = entrada.nextInt();
+
+        System.out.print("Digite su numero de identificacion: ");
+        int identificacion = entrada.nextInt();
 
         System.out.print("Digite su nombre completo: ");
         String name = entrada.next();
@@ -201,17 +209,13 @@ public class prueba {
                         contadorDeMiArreglo++;
                     }
                     break;
-                case 2:
-                        inscripcionJuegos(usuarios, contadorDeMiArreglo, entrada);
-                        contadorDeMiArreglo++;
-                    break;
 
-                case 3:
+                case 2:
                       inscripcionJuegos(usuarios, contadorDeMiArreglo, entrada);
                       contadorDeMiArreglo++;
                     break;
 
-                case 4:
+                case 3:
                     eliminarcuentaUsuario(usuarios, contadorDeMiArreglo, entrada);
                     break;
 
@@ -291,7 +295,6 @@ public class prueba {
                 System.out.println("Cuenta eliminada");
                 pausa();
             }
-
         }
     }
 
