@@ -1,0 +1,471 @@
+import java.util.Scanner;
+import java.util.Random;
+import java.util.ArrayList;
+
+class Usuario {
+    private int identificacion;
+    private String name;
+    private String email;
+    private int edad;
+    private int grado;
+
+    public Usuario(int identificacion, String name, int edad, String email, int grado) {
+        this.identificacion = identificacion;
+        this.name = name;
+        this.email = email;
+        this.edad = edad;
+        this.grado = grado;
+    }
+
+    public int getIdentificacion() {
+        return identificacion;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public int getGrado() {
+        return grado;
+    }
+}
+
+public class nose {
+
+    static Scanner entrada = new Scanner(System.in);
+    static Random random = new Random();
+    static ArrayList<Usuario> usuarios = new ArrayList<>();
+    static int puntosSuma = 0;
+    static int intentosSuma = 0;
+    static int puntos = 0;
+    static int intentos = 0;
+
+    public static void main(String[] args) {
+        int opcion;
+        do {
+            limpiarPantalla();
+            System.out.println("=======================================================");
+            System.out.println("");
+            System.out.println("           ------Bienvenido A Learn Play------");
+            System.out.println("");
+            System.out.println("=======================================================");
+            System.out.println("");
+            System.out.println("-------Todo lo relacionado con la inscripcion--------");
+            System.out.println("");
+            System.out.println("1. Inscribirse");
+            System.out.println("");
+            System.out.println("2. Ver personas inscritas");
+            System.out.println("");
+            System.out.println("3. Listar usuarios");
+            System.out.println("");
+            System.out.println("4. Eliminar usuario");
+            System.out.println("");
+            System.out.println("=======================================================");
+            System.out.println("");
+            System.out.println("       ------------Comenzar a Jugar------------");
+            System.out.println("");
+            System.out.println("                    5. JUGAR");
+            System.out.println("");
+            System.out.println("=======================================================");
+            System.out.println("");
+            System.out.print("      Seleccione la Opcion: ");
+            opcion = entrada.nextInt();
+            limpiarPantalla();
+            switch (opcion) {
+                case 1:
+                    inscripcionJuegos();
+                    break;
+                case 2:
+                    verPersonasInscritas();
+                    break;
+                case 3:
+                    listarUsuarios();
+                    break;
+                case 4:
+                    eliminarUsuario();
+                    break;
+                case 5:
+                    gestionarJuegos();
+                    break;
+                default:
+                    System.out.println("Opcion no valida, Seleccione una Opcion valida");
+                    break;
+            }
+
+        } while (true);
+    }
+
+    public static void inscripcionJuegos() {
+        System.out.println("=======================================================");
+        System.out.println("");
+        System.out.println("          ----------Inscripcion----------");
+        System.out.println("");
+        System.out.println("=======================================================");
+        System.out.println("");
+        System.out.println("Para continuar, presione (1) para comenzar con la inscripcion");
+        System.out.println("");
+        System.out.println("1.(SI) 2.(NO) ");
+        System.out.println("");
+        System.out.println("=======================================================");
+        int codigoJuego = entrada.nextInt();
+        limpiarPantalla();
+        switch (codigoJuego) {
+            case 1:
+                entrada.nextLine();
+                System.out.println("======================================");
+                System.out.println("");
+                System.out.print("Digite su nombre completo: ");
+                System.out.println("");
+                System.out.println("======================================");
+                String name = entrada.nextLine();
+
+                System.out.println("======================================");
+                System.out.println("");
+                System.out.print("Digite su edad: ");
+                System.out.println("");
+                System.out.println("======================================");
+                int edad = entrada.nextInt();
+
+                entrada.nextLine();
+                System.out.println("======================================");
+                System.out.println("");
+                System.out.print("Digite el email: ");
+                System.out.println("");
+                System.out.println("======================================");
+                String email = entrada.nextLine();
+
+                System.out.println("======================================");
+                System.out.println("");
+                System.out.print("Digite el grado que esta cursando: ");
+                System.out.println("");
+                System.out.println("======================================");
+                int grado = entrada.nextInt();
+
+                Usuario nuevoUsuario = new Usuario(usuarios.size() + 1, name, edad, email, grado);
+                usuarios.add(nuevoUsuario);
+                System.out.println("Inscripcion exitosa");
+                break;
+            case 2:
+                System.out.println("Saliendo del programa");
+                System.exit(0);
+        }
+    }
+
+    public static void verPersonasInscritas() {
+        System.out.println("Personas Inscritas:");
+        for (Usuario usuario : usuarios) {
+            System.out.println("================================================================");
+            System.out.println("           --------Persona Inscrita--------");
+            System.out.println("Nombre: " + usuario.getName());
+            System.out.println("");
+            System.out.println("Edad: " + usuario.getEdad());
+            System.out.println("");
+            System.out.println("Email: " + usuario.getEmail());
+            System.out.println("");
+            System.out.println("Grado: " + usuario.getGrado());
+            System.out.println("");
+            System.out.println("================================================================");
+
+        }
+        pausa();
+    }
+
+    public static void listarUsuarios() {
+        System.out.println("================================================================");
+        System.out.println("");
+        System.out.println("             --------LISTADO DE USUARIOS--------");
+        System.out.println("");
+        System.out.println("================================================================");
+        for (Usuario usuario : usuarios) {
+            System.out.println("ID: " + usuario.getIdentificacion());
+            System.out.println("");
+            System.out.println("Nombre: " + usuario.getName());
+            System.out.println("");
+            System.out.println("Edad: " + usuario.getEdad());
+            System.out.println("");
+            System.out.println("Grado: " + usuario.getGrado());
+            System.out.println("");
+            System.out.println("Email: " + usuario.getEmail());
+            System.out.println("================================================================");
+        }
+        pausa();
+    }
+
+    public static void eliminarUsuario() {
+        System.out.println("================================================================");
+        System.out.println("");
+        System.out.println("              --------Eliminar Cuenta--------");
+        System.out.println("");
+        System.out.println("================================================================");
+        System.out.println("");
+        System.out.print("                        -----AVISO----- ");
+        System.out.println("");
+        System.out.println("          para eliminar la cuenta debes fijarte en el ID");
+        System.out.println("        al colocar el numero del ID, la cuenta se eliminara");
+        System.out.println("");
+        System.out.println("================================================================");
+        System.out.println("");
+        System.out.print("Digite la identificación de la cuenta a eliminar: ");
+        int cuentaEliminar = entrada.nextInt();
+        System.out.println("");
+        System.out.println("================================================================");
+        for (int i = 0; i < usuarios.size(); i++) {
+            if (usuarios.get(i).getIdentificacion() == cuentaEliminar) {
+                usuarios.remove(i);
+                System.out.println("Cuenta eliminada");
+                pausa();
+                return;
+            }
+        }
+        System.out.println("No se encontró ninguna cuenta con esa identificación.");
+        pausa();
+    }
+
+    public static void gestionarJuegos() {
+        do {
+            System.out.println("==========================================");
+            System.out.println("");
+            System.out.println("        //////// GAMES //////////");
+            System.out.println("");
+            System.out.println("==========================================");
+            System.out.println("        1. Juego Suma y Avanza");
+            System.out.println("");
+            System.out.println("        2. Juego Resta y Gana");
+            System.out.println("");
+            System.out.println("        3. Volver al menu principal");
+            System.out.println("");
+            System.out.println("==========================================");
+            System.out.println("");
+            System.out.print("-Seleccione el juego al que quieres entrar: ");
+            System.out.println("");
+            System.out.println("==========================================");
+
+            int opcionGestion = entrada.nextInt();
+
+            limpiarPantalla();
+            switch (opcionGestion) {
+                case 1:
+                    gamesuma();
+                    break;
+                case 2:
+                    gameresta();
+                    break;
+                case 3:
+                    return;
+                default:
+                    System.out.println("Opcion no valida. Seleccione una Opcion valida");
+                    break;
+            }
+
+        } while (true);
+    }
+
+    public static void gamesuma() {
+        int op;
+        boolean volverInicioSuma = false;
+
+        do {
+            System.out.println("======================================================");
+            System.out.println("           Bienvenido al juego Suma y Avanza         ");
+            System.out.println("======================================================");
+            System.out.println("           1. Jugar                                  ");
+            System.out.println("           2. Instrucciones                        ");
+            System.out.println("           3. Volver al inicio");
+            System.out.println("           4. Volver al menu principal");
+            System.out.println("======================================================");
+            System.out.print(" -Seleccione una Opcion: ");
+            op = entrada.nextInt();
+            System.out.println("======================================================");
+
+            switch (op) {
+                case 1:
+                    juegoSuma();
+                    break;
+                case 2:
+                    mostrarInstrucciones();
+                    break;
+                case 4:
+                    return;
+                default:
+                    System.out.println("Opcion no valida, Saliendo del juego");
+                    break;
+            }
+
+            System.out.println("Desea volver al menu de inicio? (Sí = 1)  (No = 0): ");
+            int volver = entrada.nextInt();
+            if (volver == 1) {
+                volverInicioSuma = true;
+            }
+
+        } while (volverInicioSuma);
+    }
+
+    public static void mostrarInstrucciones() {
+        System.out.println("======================================================");
+        System.out.println("                     INSTRUCCIONES                    ");
+        System.out.println("======================================================");
+        System.out.println("1. El juego consiste en resolver sumas aleatorias.");
+        System.out.println("");
+        System.out.println("2. Por cada suma que respondas correctamente, ganaras un punto.");
+        System.out.println("");
+        System.out.println("3. Al final del juego se mostrara tu puntaje.");
+        System.out.println("");
+        System.out.println("4. Avanza y diviertete");
+        System.out.println("======================================================");
+    }
+
+    public static void gameresta() {
+        int op;
+        boolean volverInicio = false;
+
+        do {
+            System.out.println("======================================================");
+            System.out.println("       Bienvenido al juego de resta y gana        ");
+            System.out.println("                                                   ");
+            System.out.println("           1. Jugar                                  ");
+            System.out.println("           2. Instrucciones                        ");
+            System.out.println("           3. Volver al menu de inicio                       ");
+            System.out.println("           4. Volver al menu principal");
+            System.out.println("");
+            System.out.println(" -Seleccione una Opcion (1, 2, 3 o 4): ");
+            op = entrada.nextInt();
+            System.out.println("======================================================");
+
+            switch (op) {
+                case 1:
+                    juegoResta();
+                    break;
+                case 2:
+                    mostrarInstrucciones();
+                    break;
+                case 4:
+                    return;
+                default:
+                    System.out.println("Opcion no valida, Saliendo del juego");
+                    break;
+            }
+
+            System.out.println("¿Desea volver al menu de inicio? (Sí = 1)  (No = 0): ");
+            int volver = entrada.nextInt();
+            if (volver == 1) {
+                volverInicio = true;
+            }
+
+        } while (volverInicio);
+    }
+
+    public static void juegoSuma() {
+        boolean continuarJuego = true;
+
+        while (continuarJuego) {
+            System.out.println("======================================================");
+            System.out.println("\n           -----JUEGO DE SUMA-----");
+            System.out.print("Cuantas operaciones quieres resolver?: ");
+            int numOperaciones = entrada.nextInt();
+            System.out.println("======================================================");
+
+            for (int i = 0; i < numOperaciones; i++) {
+                int num1 = random.nextInt(50);
+                int num2 = random.nextInt(50);
+
+                System.out.print("\n" + num1 + " + " + num2 + " = ");
+                int respuestaUsuario = entrada.nextInt();
+
+                int resultado = num1 + num2;
+
+                if (respuestaUsuario == resultado) {
+                    System.out.println("Respuesta correcta, bien ahí");
+                    puntosSuma++;
+                } else {
+                    System.out.println("Esa no es, la respuesta correcta era: " + resultado);
+                }
+
+                intentosSuma++;
+            }
+
+            System.out.println("\n¿Quieres seguir jugando? (Sí = 1)  (No = 0): ");
+            int continuar = entrada.nextInt();
+            if (continuar == 0) {
+                continuarJuego = false;
+            }
+        }
+
+        System.out.println("\n======================================================");
+        System.out.println("        -  -  -  -  -Juego terminado-  -  -  -  -");
+        System.out.println(
+                "    Tu puntaje final: " + puntosSuma + " puntos" + "  El numero de intentos fue: " + intentosSuma);
+        System.out.println("======================================================");
+
+        volverAlMenuPrincipal();
+    }
+
+    public static void juegoResta() {
+        boolean continuarJuego = true;
+
+        while (continuarJuego) {
+            System.out.print("Cuantas operaciones quieres resolver?: ");
+            int numOperaciones = entrada.nextInt();
+
+            for (int i = 0; i < numOperaciones; i++) {
+                int num1 = random.nextInt(50);
+                int num2 = random.nextInt(50);
+
+                System.out.print(num1 + " - " + num2 + " = ");
+                int respuestaUsuario = entrada.nextInt();
+
+                int resultado = num1 - num2;
+
+                if (respuestaUsuario == resultado) {
+                    System.out.println("Respuesta correcta, bien hecho");
+                    puntos++;
+                } else {
+                    System.out.println("Esa no es, La buena era: " + resultado);
+                }
+
+                intentos++;
+            }
+
+            System.out.println("¿Quieres seguir jugando? (Sí = 1) (No = 0): ");
+            int continuar = entrada.nextInt();
+            if (continuar == 0) {
+                continuarJuego = false;
+            }
+        }
+
+        System.out.println("================================================================");
+        System.out.println("        -  -  -  -  -Juego terminado-  -  -  -  -");
+        System.out.println("    Tu puntaje final " + "             El numero de intentos ");
+        System.out.println("     fue: " + puntos + " puntos" + "                fue:" + intentos + " intentos");
+        System.out.println("================================================================");
+
+        volverAlMenuPrincipal();
+    }
+
+    public static void limpiarPantalla() {
+        try {
+            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public static void pausa() {
+        entrada.nextLine();
+        System.out.println("\t\nPresione enter para continuar");
+        entrada.nextLine();
+    }
+
+    public static void volverAlMenuPrincipal() {
+        System.out.println("\nPresione Enter para volver al menu principal");
+        entrada.nextLine();
+        entrada.nextLine();
+    }
+}
